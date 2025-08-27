@@ -1,0 +1,436 @@
+/*
+ * Main stylesheet for the GrandTex garment factory website.
+ *
+ * The palette and typography draw inspiration from modern fashion brands while
+ * echoing the clean, future‑forward look of the reference site. Variables are
+ * used sparingly to improve readability. Sections are spaced generously and
+ * leverage flexbox and CSS grid for responsive layouts.
+ */
+
+/* Reset some defaults */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #282429;
+    line-height: 1.5;
+    background-color: #F1EFEB;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1B2550;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #282429;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav a:hover {
+    color: #1B2550;
+}
+
+/* Hero */
+.hero {
+    height: 90vh;
+    /* Use a locally generated abstract background. The image sits behind a
+       semi‑transparent overlay to ensure legibility of text. */
+    background: url('images/hero.png') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 1rem;
+    position: relative;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(27, 37, 80, 0.65);
+    z-index: 0;
+}
+
+.hero-title {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: 1rem;
+    z-index: 1;
+}
+
+.hero-subtitle {
+    position: relative;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    z-index: 1;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #FFAC3A;
+    color: #1B2550;
+}
+
+.btn-primary:hover {
+    background-color: #e89a31;
+}
+
+.btn-secondary {
+    background-color: #1B2550;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #162046;
+}
+
+/* Section titles */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #1B2550;
+}
+
+/* Collections */
+.collections {
+    padding: 4rem 1rem;
+    background-color: #F1EFEB;
+}
+
+.collection-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.collection-card {
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.collection-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.collection-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.collection-card .card-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.collection-card .card-content {
+    padding: 1rem;
+}
+
+.collection-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #1B2550;
+}
+
+.collection-card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Sustainability */
+.sustainability {
+    padding: 4rem 1rem;
+    background-color: #EAE8E4;
+    text-align: center;
+}
+
+.sustainability-text {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+    color: #282429;
+}
+
+/* Highlights */
+.highlights {
+    padding: 4rem 1rem;
+    background-color: #F1EFEB;
+}
+
+.highlights-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.highlight-card {
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.highlight-card.in-view {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.highlight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-card .highlight-image {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+.highlight-card .highlight-content {
+    padding: 1rem;
+}
+
+.highlight-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #1B2550;
+}
+
+.highlight-card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Brands */
+.brands {
+    padding: 4rem 1rem;
+    background-color: #EAE8E4;
+    text-align: center;
+}
+
+.brands-intro {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-size: 1rem;
+    color: #282429;
+}
+
+.brands-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.brands-logos span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1B2550;
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Contact section with moving text background */
+.contact {
+    background-color: #1B2550;
+    color: #fff;
+    padding: 4rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-container {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.contact p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.contact .btn-primary {
+    background-color: #FFAC3A;
+    color: #1B2550;
+}
+
+.contact .btn-primary:hover {
+    background-color: #e89a31;
+}
+
+/* Animated marquee text behind contact content */
+.contact::before {
+    content: 'Ready to get started?   Ready to get started?   Ready to get started?   Ready to get started?   Ready to get started?';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    font-weight: 700;
+    white-space: nowrap;
+    opacity: 0.05;
+    color: #fff;
+    animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0) translateY(-50%);
+    }
+    100% {
+        transform: translateX(-50%) translateY(-50%);
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: #1B2550;
+    color: #fff;
+    padding: 4rem 1rem 2rem;
+}
+
+.footer-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    margin-bottom: 2rem;
+}
+
+.footer-column h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.footer-column ul {
+    list-style: none;
+    line-height: 2;
+}
+
+.footer-column a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: #FFAC3A;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.newsletter-form input[type="email"] {
+    flex: 1;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+.newsletter-form button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    border: none;
+    background-color: #FFAC3A;
+    color: #1B2550;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.newsletter-form button:hover {
+    background-color: #e89a31;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.footer-bottom a {
+    color: #FFAC3A;
+    text-decoration: none;
+}
